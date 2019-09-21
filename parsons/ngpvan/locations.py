@@ -3,6 +3,7 @@
 class Locations(object):
     """Class for '/locations' end points."""
 
+
     def __init__(self, van_connection):
 
         self.connection = van_connection
