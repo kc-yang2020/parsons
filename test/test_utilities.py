@@ -2,10 +2,7 @@ import unittest
 import os
 import pytest
 from unittest import mock
-from parsons.utilities import date_convert
-from parsons.utilities import files
-from parsons.utilities import check_env
-from parsons.utilities import json_format
+from parsons.utilities import date_convert, files, check_env, json_format, validate
 
 
 """
@@ -56,6 +53,10 @@ def test_compression_type_for_path():
 def test_json_format():
     assert json_format.arg_format('my_arg') == 'myArg'
 
+def test_valid_phone():
+    assert validate.valid_phone(5126993338) == True
+    assert validate.valid_phone(5555555555) == False
+
 class TestCheckEnv(unittest.TestCase):
 
     def test_environment_field(self):
@@ -79,4 +80,5 @@ class TestCheckEnv(unittest.TestCase):
         """Test check env raises error"""
         with self.assertRaises(KeyError) as context:
             check_env.check('PARAM', None)
+
 
